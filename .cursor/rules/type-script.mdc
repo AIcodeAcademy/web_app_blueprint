@@ -1,8 +1,7 @@
 ---
-description: Type Script
+description: Type Script rules
 globs: *.ts
 ---
-
 # Type Script rules
 
 - Prefer `type` over `interface`
@@ -17,13 +16,15 @@ globs: *.ts
 # Html inline 
 
 - Declare an `html` const as `const html = String.raw;` for HTML tagged content
+- Add `id` attributes to facilitate selection
 
 # Folder structure
+
 ```txt
-docs/
+docs/ 
 public/
 src/
-  components/ # for reusable UI components
+  components/ # for composable UI
   domain/ # for business logic
   models/ # for types and interfaces
   styles/ # for global styles
@@ -35,4 +36,5 @@ tests/
 
 - Export only one artifact per file
 - Use the following naming convention `{{business}}.{{technical}}.ts`, where 
+ - business is related to functional os specification domain
  - technical is one of: `type`, `component`, `function` 

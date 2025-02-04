@@ -2,9 +2,16 @@
 description: End to end testing rules
 globs: 
 ---
-# End to end Testing with Playwright
+# Use Playwright
 
 - Use Playwright for e2e testing
-- Use AAA pattern for organizing test code.
-- Name variables following: `inputX`, `mockX`, `expectedX`, `actualX`.
-- Use GWT for describing the tests.
+- Create one spec file for each feature at `/tests/{{feature number}}_{{feature name}}.spec.ts`
+- Use **GWT** pattern for describing the tests.
+- Use **AAA** pattern for organizing test code.
+- Name variables following this convention: `inputX`, `mockX`, `actualX`, `expectedX`.
+
+# Selection
+
+- Read the current `src/components` implementation
+- Prefer selection by role and content (like a user would do)
+- Add any `id`, `role` or `name` attribute needed for easy selections.

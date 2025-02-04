@@ -1,31 +1,35 @@
 ---
-description: Web Rules
+description: Web Rules for html and css code
 globs: 
 ---
-# Components
-
-- Prefer small components
-- Save components at /components folder
-- Do not add features to the main html page
-
 # HTML
 
-- Use standard HTML semantic tags
-- Avoid divs or paragraphs for layout and use proper semantic tags
+- Use standard HTML semantic tags like : `article`, `section`,  `nav`, `header`, `footer`, `aside`...
+- Avoid `div` or `p` for layout and use proper semantic tags
 - Add ARIA attributes for accessibility 
+- Add `role` attribute when needed
 
 # CSS
 
 - Prefer style standard HTML over custom classes
-- Use a basic reset such PicoCSS
-- Use variables for colors, fonts, and spacing
-- Use flex/grid layout for layout
-- Ensure responsive design (typography, layout, spacing, etc.)
 - Avoid svg and use emojis for icons
-- Nice to have light/dark mode
+
+# PicoCSS
+
+- Use a basic reset such [PicoCSS](mdc:https:/picocss.com/docs)
+- Use [variables](mdc:https:/picocss.com/docs/css-variables) for colors, fonts, and spacing
+- Use [containers](mdc:https:/picocss.com/docs/container) and [grid](mdc:https:/picocss.com/docs/grid) for layout
+- Nice to have [light/dark](mdc:https:/picocss.com/docs/css-variables#css-variables-for-color-schemes) mode
 
 # Web APIs
 
 - Use fetch API for HTTP requests
 - Use localStorage for data storage
 - Avoid external libraries as much as possible
+
+# Components
+
+- Prefer small components
+- Name them as `src/components/{{name-or-selector}}.component.ts`
+- Only one component per file
+- Do not add features to the main html page

@@ -1,23 +1,21 @@
 ---
-description: Git rules
+description: Gir repository rules
 globs: 
 ---
-# Rules for repository management
-
-## Initialize
+# Initialize
 
 - Initialize if not yet done and add a `.gitignore` file
-  
 
 ## Commit
 
-- Add any pending cahnges
+- Add any pending changes
 - Generate a message with the summary of changes
 - Commit using conventional commits
 
 ## Release
 
-- Update version in package.json using semantic versioning
-- Create or opdate a `CHANGELOG.md` file with the release notes
+- Update version in `package.json` using semantic versioning
+- Create or update a `CHANGELOG.md` file with messages from commits since last release
 - Document the changes following [docs.mdc](mdc:.cursor/rules/docs.mdc) guidelines
 - Create a _tag_ for the release
+- Do not push any change
