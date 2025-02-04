@@ -1,5 +1,5 @@
 ---
-description: Type Script rules
+description: TypeScript
 globs: *.ts
 ---
 # Type Script rules
@@ -35,6 +35,6 @@ tests/
 # File structure
 
 - Export only one artifact per file
-- Use the following naming convention `{{business}}.{{technical}}.ts`, where 
- - business is related to functional os specification domain
- - technical is one of: `type`, `component`, `function` 
+- Use the following naming convention `{{business}}.{{technical}}.ts`, where :
+  - business is related to functional os specification domain
+  - technical is one of: `type`, `component`, `function` 

@@ -1,12 +1,11 @@
 ---
-description: Documentation rules for code and project
+description: Rules for documenting the code and the project
 globs: 
 ---
 # Code
 
 - Add JSDoc comments to public or exported functions
 - Add comments to complex code that explain the why behind the code
-
 
 # Project
 

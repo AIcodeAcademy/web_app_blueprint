@@ -1,5 +1,5 @@
 ---
-description: End to end testing rules
+description: End to end testing with Playwright
 globs: 
 ---
 # Use Playwright
