@@ -1,0 +1,24 @@
+{
+  "name": "web_app_blueprint",
+  "description": "Web App Blueprint for cursor agent",
+  "author": {
+    "name": "Alberto Basalo",
+    "url": "https://albertobasalo.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AIcodeAcademy/web_app_blueprint.git"
+  },
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5"
+  }
+}
