@@ -25,7 +25,7 @@ docs/
 public/
 src/
   components/ # for composable UI
-  domain/ # for business logic
+  logic/ # for business logic
   models/ # for types and interfaces
   styles/ # for global styles
   utils/ # for utility functions

@@ -1,4 +1,4 @@
-import { Credit } from '../model/credit.type';
+import { Credit } from '../models/credit.type';
 import { getCurrentYear } from '../utils/date.function';
 
 const author: Credit = {
@@ -17,10 +17,4 @@ export function renderFooter() {
   const companyLink = `<a href="${company.url}" target="_blank">${company.name}</a>`;
   const footer = html`<p>${copyright} ${authorLink} for ${companyLink}</p>`;
   return footer;
-
-
-
-
-
-
 }

@@ -3,19 +3,22 @@
 ## Project Structure
 
 ```
-├── docs/                   # Project documentation
+├── docs/                  # Project documentation
 │   ├── OVERVIEW.md        # Technical overview and architecture
 │   └── JOURNAL.md         # Development journal and decisions
 ├── src/                   # Source code
-│   └── main.ts           # Application entry point
-├── tests/                # Test files
-│   └── smoke.spec.ts     # Smoke tests
-├── test-results/         # Test execution artifacts
-│   ├── report.json      # Test reports
-│   └── .last-run.json   # Latest test run data
-├── playwright.config.ts  # Playwright test configuration
-└── package.json         # Project dependencies and scripts
-```	
+│   ├── main.ts            # Application entry point
+│   ├── components/        # Components
+│   ├── logic/             # Logic functions
+│   ├── models/            # Models (types and interfaces)
+│   ├── utils/             # Utility functions
+│   └── styles/            # CSS styles
+├── tests/                 # Test files specs
+└── test-results/          # Test execution results
+├── playwright.config.ts   # Playwright test configuration
+├── package.json           # Project dependencies and scripts
+└── README.md              # Project overview
+```
 
 ## Technologies Used
 
@@ -44,6 +47,3 @@ Our testing approach focuses on:
 - Keep `JOURNAL.md` updated with key decisions
 - Run smoke tests before commits
 - Maintain comprehensive documentation
-
-
-
