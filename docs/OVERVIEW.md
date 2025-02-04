@@ -22,6 +22,7 @@
 - **TypeScript** - Primary programming language
 - **Playwright** - End-to-end testing framework
 - **Node.js** - Runtime environment
+- **Pico CSS** - CSS framework
 
 ## Testing Strategy
 
