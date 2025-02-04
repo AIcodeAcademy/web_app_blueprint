@@ -1,14 +1,8 @@
+import { setupFooter } from './components/footer.component';
+import { setupHeader } from './components/header.component';
+import { setupMain } from './components/main.component';
 import './styles/theme.css';
 
-const html = String.raw;
-
-const appContent = html`
-  <div>
-    <h1>Vite + TypeScript</h1>
-    <p>Hello World</p>
-  </div>
-`
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = appContent;
-
-
+setupHeader();
+setupMain();
+setupFooter();

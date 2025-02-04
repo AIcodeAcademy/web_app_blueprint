@@ -3,22 +3,27 @@
 
 /* Custom CSS Variables */
 :root {
-  --pico-font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --pico-font-family-sans-serif: "Tomorrow";
-  --pico-font-family-monospace: monospace;
+    --pico-font-family: "Fira Mono", Consolas, monospace;
+    --pico-font-family-emoji: "Major Mono Display", Consolas, monospace;
+    --pico-font-family-sans-serif: Tomorrow, Roboto, Helvetica, Arial, sans-serif;
+    --pico-font-family-monospace: "Fira Mono", Consolas, monospace;
   --pico-border-radius: 0rem;
 }
 
-[data-theme=dark]:root:not([data-theme=light]) {
+[data-theme=dark],:root:not([data-theme=light]) {
   /* Improve contrast */
-  --pico-color: #fff;  
+  --pico-color: #fff;
   --pico-background-color: #000;
+  --pico-muted-color: #fff;
   --pico-primary: #84cc16;
   --pico-primary-hover: #65a30d;
-  --pico-primary-background: #000;
+  --pico-primary-background: #65a30d;
+  --pico-primary-hover-background: #84cc16;
   --pico-secondary: #22d3ee;
-  --pico-secondary-hover: #06b6d4;
-  --pico-secondary-background: #000;
+  --pico-secondary-hover: #06b6d4;  
+  --pico-secondary-background: #06b6d4;
+  --pico-secondary-hover-background: #22d3ee;
+  color-scheme: dark;
 }
 
 [data-theme=light]{
@@ -26,20 +31,25 @@
   --pico-background-color: #fff;
   --pico-primary: #65a30d;
   --pico-primary-hover: #84cc16;
-  --pico-primary-background: #fff;
+  --pico-primary-background: #84cc16;
+  --pico-primary-hover-background: #65a30d;
   --pico-secondary: #06b6d4;
   --pico-secondary-hover: #22d3ee;
-  --pico-secondary-background: #fff;
+  --pico-secondary-background: #22d3ee;
+  --pico-secondary-hover-background: #06b6d4;
+  color-scheme: light;
 }
-
-
 
 /* Minimal CSS reset */
 body {
-  margin-top: 1%;  
-  margin-bottom: 1%;
-  margin-left: 3%;
-  margin-right: 3%;
+  background-color: var(--pico-background-color)  ;
+}
+
+body {
+  padding-top: 1%;  
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 span {
