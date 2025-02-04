@@ -1,6 +1,6 @@
 import { doSomething } from "../domain/main.function";
 
-export function renderMain() {
+export function createMain() {
   const component = document.createElement('main');
   const html = String.raw;
   const alertButtonHtml = html`<button class="alertButton">Click me</button>`;
@@ -13,8 +13,7 @@ export function renderMain() {
     <section>
       <span>${doSomething()}</span> ${alertButtonHtml}
     </section>
-  </article>
-  `;
+  </article>`;
   component.innerHTML = componentHtml;
   const alertButton =component.getElementsByClassName('alertButton')[0];
   alertButton?.addEventListener('click', onAlertButtonClick);

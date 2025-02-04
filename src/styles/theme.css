@@ -73,7 +73,11 @@ span {
   padding-right: 1%;
 }
 
+[data-theme=light] .light {
+  display: none;
+}
 
-
-
+[data-theme=dark] .dark {
+  display: none;
+}
 
