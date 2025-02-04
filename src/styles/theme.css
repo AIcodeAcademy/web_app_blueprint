@@ -1,0 +1,47 @@
+/* Import Pico */
+@import '@picocss/pico';
+
+/* Custom CSS Variables */
+:root {
+  --pico-font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --pico-font-family-sans-serif: "Tomorrow";
+  --pico-font-family-monospace: monospace;
+  --pico-border-radius: 0rem;
+}
+
+[data-theme=dark]:root:not([data-theme=light]) {
+  /* Improve contrast */
+  --pico-color: #fff;  
+  --pico-background-color: #000;
+  --pico-primary: #84cc16;
+  --pico-primary-hover: #65a30d;
+  --pico-primary-background: #000;
+  --pico-secondary: #22d3ee;
+  --pico-secondary-hover: #06b6d4;
+  --pico-secondary-background: #000;
+}
+
+[data-theme=light]{
+  --pico-color: #000;  
+  --pico-background-color: #fff;
+  --pico-primary: #65a30d;
+  --pico-primary-hover: #84cc16;
+  --pico-primary-background: #fff;
+  --pico-secondary: #06b6d4;
+  --pico-secondary-hover: #22d3ee;
+  --pico-secondary-background: #fff;
+}
+
+
+
+/* Minimal CSS reset */
+body {
+  margin-top: 1%;  
+  margin-bottom: 1%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+span {
+  padding-right: 1%;
+}
