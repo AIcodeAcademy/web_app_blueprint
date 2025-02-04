@@ -1,0 +1,31 @@
+---
+description: Web Rules
+globs: 
+---
+# Components
+
+- Prefer small components
+- Save components at /components folder
+- Do not add features to the main html page
+
+# HTML
+
+- Use standard HTML semantic tags
+- Avoid divs or paragraphs for layout and use proper semantic tags
+- Add ARIA attributes for accessibility 
+
+# CSS
+
+- Prefer style standard HTML over custom classes
+- Use a basic reset such PicoCSS
+- Use variables for colors, fonts, and spacing
+- Use flex/grid layout for layout
+- Ensure responsive design (typography, layout, spacing, etc.)
+- Avoid svg and use emojis for icons
+- Nice to have light/dark mode
+
+# Web APIs
+
+- Use fetch API for HTTP requests
+- Use localStorage for data storage
+- Avoid external libraries as much as possible

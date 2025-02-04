@@ -1,0 +1,10 @@
+---
+description: End to end testing rules
+globs: 
+---
+# End to end Testing with Playwright
+
+- Use Playwright for e2e testing
+- Use AAA pattern for organizing test code.
+- Name variables following: `inputX`, `mockX`, `expectedX`, `actualX`.
+- Use GWT for describing the tests.

@@ -1,0 +1,23 @@
+---
+description: Git rules
+globs: 
+---
+# Rules for repository management
+
+## Initialize
+
+- Initialize if not yet done and add a `.gitignore` file
+  
+
+## Commit
+
+- Add any pending cahnges
+- Generate a message with the summary of changes
+- Commit using conventional commits
+
+## Release
+
+- Update version in package.json using semantic versioning
+- Create or opdate a `CHANGELOG.md` file with the release notes
+- Document the changes following [docs.mdc](mdc:.cursor/rules/docs.mdc) guidelines
+- Create a _tag_ for the release

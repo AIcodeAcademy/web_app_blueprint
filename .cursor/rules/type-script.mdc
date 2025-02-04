@@ -1,0 +1,38 @@
+---
+description: Type Script
+globs: *.ts
+---
+
+# Type Script rules
+
+- Prefer `type` over `interface`
+- Prefer functions over static methods
+- Prefer `#` over `_` for private properties
+- Avoid `null` and `undefined`
+- Prefer named functions over complex anonymous functions
+- Avoid deep nested flow structures by using early returns
+- Validate data using plain TS functions or ValueObjects if needed
+- Avoid external libraries as much as possible
+
+# Html inline 
+
+- Declare an `html` const as `const html = String.raw;` for HTML tagged content
+
+# Folder structure
+```txt
+docs/
+public/
+src/
+  components/ # for reusable UI components
+  domain/ # for business logic
+  models/ # for types and interfaces
+  styles/ # for global styles
+  utils/ # for utility functions
+tests/
+```
+
+# File structure
+
+- Export only one artifact per file
+- Use the following naming convention `{{business}}.{{technical}}.ts`, where 
+ - technical is one of: `type`, `component`, `function` 
