@@ -1,57 +1,79 @@
 /* Import Pico */
 @import '@picocss/pico';
+@import '@fontsource/fira-mono';
+@import '@fontsource/major-mono-display';
+@import '@fontsource/tomorrow';
 
-/* Custom CSS Variables */
-:root {
-    --pico-font-family: "Fira Mono", Consolas, monospace;
-    --pico-font-family-emoji: "Major Mono Display", Consolas, monospace;
-    --pico-font-family-sans-serif: Tomorrow, Roboto, Helvetica, Arial, sans-serif;
-    --pico-font-family-monospace: "Fira Mono", Consolas, monospace;
-  --pico-border-radius: 0rem;
-}
-
-[data-theme=dark],:root:not([data-theme=light]) {
-  /* Improve contrast */
-  --pico-color: #fff;
-  --pico-background-color: #000;
-  --pico-muted-color: #fff;
-  --pico-primary: #84cc16;
-  --pico-primary-hover: #65a30d;
-  --pico-primary-background: #65a30d;
-  --pico-primary-hover-background: #84cc16;
-  --pico-secondary: #22d3ee;
-  --pico-secondary-hover: #06b6d4;  
-  --pico-secondary-background: #06b6d4;
-  --pico-secondary-hover-background: #22d3ee;
+/* dark theme */
+[data-theme=dark] {
+  --pico-color: white;
+  --pico-background-color: black;
+  --pico-primary: lime;
+  --pico-primary-hover: LimeGreen;
+  --pico-primary-background: lime;
+  --pico-primary-hover-background: LimeGreen  ;
+  --pico-primary-inverse: black;
+  --pico-underline: LimeGreen;
+  --pico-primary-underline: LimeGreen;
+  --pico-secondary: cyan  ;
+  --pico-secondary-hover: turquoise  ;
+  --pico-secondary-background: cyan  ;
+  --pico-secondary-hover-background: turquoise ;
   color-scheme: dark;
 }
 
-[data-theme=light]{
-  --pico-color: #000;  
-  --pico-background-color: #fff;
-  --pico-primary: #65a30d;
-  --pico-primary-hover: #84cc16;
-  --pico-primary-background: #84cc16;
-  --pico-primary-hover-background: #65a30d;
-  --pico-secondary: #06b6d4;
-  --pico-secondary-hover: #22d3ee;
-  --pico-secondary-background: #22d3ee;
-  --pico-secondary-hover-background: #06b6d4;
+/* light theme */
+[data-theme=light],:root:not([data-theme=dark]){
+  --pico-color: black;  
+  --pico-background-color: white;
+  --pico-primary: LimeGreen;
+  --pico-primary-hover: lime;
+  --pico-primary-background: LimeGreen;
+  --pico-primary-hover-background: lime;
+  --pico-primary-inverse: white;
+  --pico-underline: lime;
+  --pico-primary-underline: lime;
+  --pico-secondary: turquoise  ;
+  --pico-secondary-hover: cyan;
+  --pico-secondary-background: turquoise;
+  --pico-secondary-hover-background: cyan;
   color-scheme: light;
 }
 
 /* Minimal CSS reset */
-body {
-  background-color: var(--pico-background-color)  ;
+:root {
+  --pico-font-family: "Fira Mono", Consolas, monospace;
+  --pico-font-family-emoji: "Major Mono Display", Consolas, monospace;
+  --pico-font-family-sans-serif: Tomorrow, Roboto, Helvetica, Arial, sans-serif;
+  --pico-font-family-monospace: "Fira Mono", Consolas, monospace;
+  --pico-border-radius: 0rem;
+  background-color: var(--pico-background-color);
 }
 
 body {
+  color: var(--pico-color);
+  background-color: var(--pico-background-color);
   padding-top: 1%;  
   padding-bottom: 1%;
   padding-left: 3%;
   padding-right: 3%;
+  font-family: var(--pico-font-family-monospace);
+}
+
+h1, h2, h3, h4, h5, h6, label {
+  font-family: var(--pico-font-family-sans-serif);
+}
+
+/* Logo */
+header nav ul li strong {
+  font-family: var(--pico-font-family-emoji);
 }
 
 span {
   padding-right: 1%;
 }
+
+
+
+
+

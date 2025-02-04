@@ -32,6 +32,9 @@
     "vite": "^6.0.5"
   },
   "dependencies": {
+    "@fontsource/fira-mono": "^5.1.1",
+    "@fontsource/major-mono-display": "^5.1.1",
+    "@fontsource/tomorrow": "^5.1.1",
     "@picocss/pico": "^2.0.6"
   }
 }

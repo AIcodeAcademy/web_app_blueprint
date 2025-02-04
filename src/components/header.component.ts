@@ -1,14 +1,8 @@
-export function setupHeader() {
-  const slot = document.querySelector('body');
-  if (!slot) throw new Error('Body slot not found');
-  const header = document.createElement('header');
-  header.innerHTML = renderHeader();
-  slot.appendChild(header);
-}
 
-function renderHeader() {
+
+export function renderHeader() {
  const html = String.raw;
- const title = 'Web App Blueprint';
+ const title = 'Web App Blueprint!';
  const githubUrl = 'https://github.com/AIcodeAcademy/web_app_blueprint';
  const header = html`
    <nav>

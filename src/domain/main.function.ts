@@ -1,5 +1,5 @@
 export function doSomething() {
-  return 'Doing something';
+  return 'To do something';
 }
 
 
