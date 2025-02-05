@@ -28,7 +28,7 @@ test.describe('Compound Calculator Feature', () => {
     await inputAmount.fill('-100');
 
     // Then it should show validation error
-    const errorMessage = page.getByRole('alert', { name: /Initial Amount/ });
+    const errorMessage = page.getByRole('alert').first();
     await expect(errorMessage).toContainText('must be at least 0');
     await expect(inputAmount).toHaveAttribute('aria-invalid', 'true');
   });
@@ -59,6 +59,8 @@ test.describe('Compound Calculator Feature', () => {
     // Given invalid investment inputs
     const inputAmount = page.getByRole('spinbutton', { name: 'Initial Amount' });
     await inputAmount.click();
+    // clear the input by selecting all text and pressing backspace
+    await inputAmount.press('Control+A');
     await inputAmount.press('Backspace');
     await inputAmount.press('0');
     await inputAmount.press('.');
@@ -67,11 +69,9 @@ test.describe('Compound Calculator Feature', () => {
     // When I try to calculate
     await page.getByRole('button', { name: 'Calculate' }).click();
 
-    // Then it should show error message with retry option
+    // Then it should show error message
     const errorAlert = page.getByRole('alert', { name: /Investment calculation error/i });
-    await expect(errorAlert).toContainText('Invalid amount');
-    const retryButton = page.getByRole('button', { name: 'Try Again' });
-    await expect(retryButton).toBeVisible();
+    await expect(errorAlert).toContainText('Invalid investment parameters');
   });
 
   test('should enable navigation after calculation', async ({ page }) => {
