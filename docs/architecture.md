@@ -1,39 +1,42 @@
-# Architecture Document: Web App Blueprint
+# Architecture Document: AssetGrow
 
-Web App Blueprint is a web application for pet owners and veterinarians that provides a scalable blueprint for managing pet-related data and interactions.
+AssetGrow is a web application for the general public that serves as a compound interest calculator.
 
 ## Main Features
 
 1. `1_feature_one`
 
-   - User Management: Allow users to register, log in, and manage their profiles.
+   - A form to enter data on initial capital, interest rate, accumulation period, and years of investment.
 
 2. `2_feature_two`
 
-   - Pet Management: Enable users to add, update, and remove pet records.
+   - A table to see year by year the evolution of capital and the interest generated each year.
+
+3. `3_feature_three`
+   - A summary with the total interest, the final capital, and the profit percentage.
 
 ## Specifications
 
 - **Interaction**: Web
-- **Architecture**: Frontend_Backend
-- **Database**: PostgreSQL
-- **Authentication**: JWT
-- **Integrations**: API_externa
-- **Presentation**: responsive, dark_mode, colors(primary, accent), fonts
+- **Architecture**: Monolith
+- **Database**: None
+- **Authentication**: None
+- **Integrations**: None
+- **Presentation**: Responsive design with PicoCSS styling
 
 ## Tech Stack
 
-- **Frontend**: TypeScript + Vite (simple)
-- **Backend**: TypeScript + Node_Express (standard)
-- **Database**: PostgreSQL
+- **Frontend**: TypeScript + Vite (vanilla)
+- **Backend**: None
+- **Database**: None
 - **E2E Testing**: Playwright
-- **Code Quality**: EsLint_Prettier
+- **Code Quality**: ESLint + Prettier
 - **Styles**: PicoCSS
 
 ## Metadata
 
-- **Date**: 2023-10-19
-- **Author**: [Your Name](https://example.com)
-- **Company**: [Acme Corp](https://acme-corp.com)
+- **Date**: 2023-10-12
+- **Author**: [Author Name](Author Link)
+- **Company**: [Company Name](Company Link)
 
-_End of Architecture Document for Web App Blueprint_
+_End of Architecture Document for AssetGrow_
