@@ -7,7 +7,9 @@ const html = String.raw;
 
 export function renderSummaryPage(investment: Investment): HTMLElement {
   const section = document.createElement('section');
-  section.setAttribute('aria-label', 'Investment Analysis');
+  section.setAttribute('role', 'tabpanel');
+  section.id = 'panel-summary';
+  section.setAttribute('aria-labelledby', 'tab-summary');
 
   try {
     const result = computeInvestment(investment);

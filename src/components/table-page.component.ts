@@ -8,7 +8,9 @@ const html = String.raw;
 
 export function renderTablePage(investment: Investment): HTMLElement {
   const section = document.createElement('section');
-  section.setAttribute('aria-label', 'Investment Breakdown');
+  section.setAttribute('role', 'tabpanel');
+  section.id = 'panel-table';
+  section.setAttribute('aria-labelledby', 'tab-table');
 
   const header = document.createElement('header');
   header.innerHTML = html`

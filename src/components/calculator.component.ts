@@ -5,15 +5,13 @@ import { renderResultDisplay } from './result-display.component';
 
 export function renderCalculator(): HTMLElement {
   const container = document.createElement('div');
-  container.className = 'calculator-container';
+  container.setAttribute('role', 'tabpanel');
+  container.id = 'panel-calculator';
+  container.setAttribute('aria-labelledby', 'tab-calculator');
 
   const form = renderCompoundForm();
   const resultContainer = document.createElement('div');
   resultContainer.id = 'result-container';
-
-  const handleError = (message: string) => {
-    resultContainer.innerHTML = `<div class="error">${message}</div>`;
-  };
 
   const handleSubmit = (event: Event) => {
     event.preventDefault();
@@ -29,11 +27,16 @@ export function renderCalculator(): HTMLElement {
       const result = computeInvestment(investment);
       resultContainer.innerHTML = '';
       resultContainer.appendChild(renderResultDisplay(result));
+
+      // Emit event with investment data
+      const updateEvent = new CustomEvent('investment-updated', {
+        detail: investment,
+        bubbles: true,
+      });
+      container.dispatchEvent(updateEvent);
     } catch (error: unknown) {
       if (error instanceof Error) {
-        handleError(error.message);
-      } else {
-        handleError('An unexpected error occurred');
+        resultContainer.innerHTML = html`<p role="alert">${error.message}</p>`;
       }
     }
   };
