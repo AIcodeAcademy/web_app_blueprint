@@ -10,55 +10,92 @@ Based on code style rules for web and typescript
 
 ```text
 - src/components/layout/
-  - Create header.component.ts
-    - Add semantic header with nav
-    - Include aria-labels for navigation
-  - Create footer.component.ts
-    - Add semantic footer with links
-    - Include attribution and version
+  - header.component.ts
+    export function renderHeader(): HTMLElement {
+      const header = document.createElement('header');
+      header.setAttribute('role', 'banner');
+      // ... navigation menu
+    }
+  - footer.component.ts
+    export function renderFooter(): HTMLElement {
+      const footer = document.createElement('footer');
+      footer.setAttribute('role', 'contentinfo');
+      // ... links and version
+    }
 
 - src/components/calculator/
-  - Move compound-form.component.ts
-  - Move result-display.component.ts
-  - Update imports in calculator.component.ts
+  - compound-form.component.ts -> calculator/form.component.ts
+  - result-display.component.ts -> calculator/result.component.ts
+  - calculator.component.ts (update imports)
 
 - src/components/table/
-  - Move table.component.ts
-  - Create table-header.component.ts
-  - Create table-row.component.ts
+  - table.component.ts (move from root)
+  - table-header.component.ts
+    export function renderTableHeader(onSort: (field: SortableField) => void): HTMLElement
+  - table-row.component.ts
+    export function renderTableRow(result: YearlyResult): HTMLElement
 
 - src/components/summary/
-  - Move summary.component.ts
-  - Create metric-card.component.ts
+  - summary.component.ts (move from root)
+  - metric-card.component.ts
+    export function renderMetricCard(label: string, value: string): HTMLElement
 ```
 
 ### Type Safety and Validation
 
 ```text
 - src/models/validation.type.ts
-  - Create type ValidationError = { field: string; message: string }
-  - Create type ValidationResult = { isValid: boolean; errors: ValidationError[] }
+  export type ValidationError = {
+    readonly field: keyof Investment;
+    readonly message: string;
+  }
+  export type ValidationResult = {
+    readonly isValid: boolean;
+    readonly errors: ValidationError[];
+  }
 
 - src/utils/validation.function.ts
-  - Create validateAmount(amount: number): ValidationError[]
-  - Create validateRate(rate: number): ValidationError[]
-  - Create validateYears(years: number): ValidationError[]
+  export function validateAmount(amount: number): ValidationError[] {
+    const errors: ValidationError[] = [];
+    if (amount <= 0) errors.push({ field: 'amount', message: 'Amount must be positive' });
+    return errors;
+  }
+  // Similar for rate and years...
 
 - src/models/calculator.type.ts
-  - Add readonly modifiers to all properties
-  - Add branded types for Amount, Rate, and Years
+  export type Amount = number & { readonly brand: unique symbol };
+  export type Rate = number & { readonly brand: unique symbol };
+  export type Years = number & { readonly brand: unique symbol };
+  export type Investment = {
+    readonly amount: Amount;
+    readonly rate: Rate;
+    readonly years: Years;
+  }
 ```
 
 ### Error Handling
 
 ```text
 - src/utils/error.function.ts
-  - Create displayError(error: ValidationError): void
-  - Create clearErrors(): void
+  export function displayError(error: ValidationError): void {
+    const errorElement = document.getElementById('error-display');
+    if (!errorElement) return;
+    errorElement.textContent = error.message;
+  }
+  export function clearErrors(): void {
+    const errorElement = document.getElementById('error-display');
+    if (!errorElement) return;
+    errorElement.textContent = '';
+  }
 
 - src/components/calculator/error-display.component.ts
-  - Create renderError(error: ValidationError): HTMLElement
-  - Add aria-live region for error messages
+  export function renderErrorDisplay(): HTMLElement {
+    const errorDisplay = document.createElement('div');
+    errorDisplay.id = 'error-display';
+    errorDisplay.setAttribute('role', 'alert');
+    errorDisplay.setAttribute('aria-live', 'polite');
+    return errorDisplay;
+  }
 ```
 
 ## E2E tests
@@ -69,10 +106,9 @@ Based on test rules
 
 ```text
 - tests/1_compound_calculator.spec.ts
-  - Test valid input calculations
-  - Test input validation errors
-  - Test form submission
-  test('should validate investment amount', async ({ page }) => {
+  import { test, expect } from '@playwright/test';
+
+  test('validates investment amount', async ({ page }) => {
     // Given the calculator page
     await page.goto('/');
 
@@ -90,7 +126,10 @@ Based on test rules
 
 ```text
 - tests/2_investment_table.spec.ts
-  test('should sort table by year', async ({ page }) => {
+  import { test, expect } from '@playwright/test';
+  import { fillValidInvestment } from './test-utils';
+
+  test('sorts table by year', async ({ page }) => {
     // Given a populated investment table
     await page.goto('/');
     await fillValidInvestment(page);
@@ -108,7 +147,10 @@ Based on test rules
 
 ```text
 - tests/3_investment_summary.spec.ts
-  test('should display correct growth percentage', async ({ page }) => {
+  import { test, expect } from '@playwright/test';
+  import { fillValidInvestment } from './test-utils';
+
+  test('displays correct growth percentage', async ({ page }) => {
     // Given investment data
     await page.goto('/');
     await fillValidInvestment(page);
@@ -130,14 +172,21 @@ Based on docs and git rules
 
 ```text
 - src/components/README.md
-  - Document component organization
-  - Explain component communication
-  - List available components
+  # Components
+
+  ## Organization
+  - /layout - Page structure components
+  - /calculator - Investment form and results
+  - /table - Investment breakdown table
+  - /summary - Investment metrics display
 
 - src/utils/README.md
-  - Document utility functions
-  - Explain validation rules
-  - List helper functions
+  # Utilities
+
+  ## Validation
+  - Amount: Must be positive number
+  - Rate: Must be between 0-100%
+  - Years: Must be positive integer
 ```
 
 ### Feature Documentation
@@ -145,27 +194,47 @@ Based on docs and git rules
 ```text
 - docs/features/
   - calculator.md
-    - Document input constraints
-    - Explain validation rules
-    - List error messages
+    # Investment Calculator
+
+    ## Validation Rules
+    - Amount: > 0
+    - Rate: 0-100
+    - Years: >= 1
+
   - table.md
-    - Document sorting behavior
-    - Explain column calculations
+    # Investment Table
+
+    ## Sorting
+    - Click column header to sort
+    - Toggles ascending/descending
+
   - summary.md
-    - Document metric calculations
-    - Explain percentage rules
+    # Investment Summary
+
+    ## Calculations
+    - Growth % = (Final - Initial) / Initial * 100
 ```
 
 ### Release Notes
 
 ```text
 - CHANGELOG.md
-  feat: reorganize components into feature folders
-  feat: add input validation with error messages
-  feat: improve table sorting functionality
-  test: add comprehensive e2e test suite
-  docs: add component and utility documentation
+  # Changelog
 
-- Version: 1.1.0
-- Tag: v1.1.0
+  ## [1.1.0] - 2024-03-21
+
+  ### Added
+  - Reorganized components into feature folders
+  - Added input validation with error messages
+  - Improved table sorting functionality
+
+  ### Changed
+  - Updated component file structure
+  - Enhanced type safety with branded types
+
+  ### Fixed
+  - Error display accessibility
+
+  ## [1.0.0] - 2024-03-20
+  - Initial release
 ```
