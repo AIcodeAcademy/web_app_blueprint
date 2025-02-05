@@ -11,6 +11,10 @@ export function renderCalculator(): HTMLElement {
   const resultContainer = document.createElement('div');
   resultContainer.id = 'result-container';
 
+  const handleError = (message: string) => {
+    resultContainer.innerHTML = `<div class="error">${message}</div>`;
+  };
+
   const handleSubmit = (event: Event) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
@@ -25,8 +29,12 @@ export function renderCalculator(): HTMLElement {
       const result = computeInvestment(investment);
       resultContainer.innerHTML = '';
       resultContainer.appendChild(renderResultDisplay(result));
-    } catch (error) {
-      resultContainer.innerHTML = `<div class="error">${error.message}</div>`;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        handleError(error.message);
+      } else {
+        handleError('An unexpected error occurred');
+      }
     }
   };
 
