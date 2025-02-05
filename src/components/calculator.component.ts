@@ -1,45 +1,82 @@
 import { computeInvestment } from '../logic/investment.function';
-import { Investment } from '../models/investment.type';
+import { Investment, InvestmentFormData, investmentValidation } from '../models/investment.type';
 import { renderCompoundForm } from './compound-form.component';
 import { renderResultDisplay } from './result-display.component';
 
 const html = String.raw;
 
-export function renderCalculator(): HTMLElement {
-  const container = document.createElement('div');
+type CalculatorElement = HTMLElement & {
+  dispatchEvent(event: CustomEvent<Investment>): boolean;
+};
+
+export function renderCalculator(): CalculatorElement {
+  const container = document.createElement('div') as CalculatorElement;
   container.setAttribute('role', 'tabpanel');
   container.id = 'panel-calculator';
   container.setAttribute('aria-labelledby', 'tab-calculator');
 
-  const form = renderCompoundForm();
+  const form = renderCompoundForm(investmentValidation);
   const resultContainer = document.createElement('div');
   resultContainer.id = 'result-container';
 
-  const handleSubmit = (event: Event) => {
+  const validateFormData = (formData: FormData): InvestmentFormData => {
+    const data = {
+      amount: formData.get('amount'),
+      rate: formData.get('rate'),
+      years: formData.get('years'),
+    } as InvestmentFormData;
+
+    if (!data.amount || !data.rate || !data.years) {
+      throw new Error('All fields are required');
+    }
+
+    return data;
+  };
+
+  const parseInvestment = (data: InvestmentFormData): Investment => {
+    const amount = Number(data.amount);
+    const rate = Number(data.rate);
+    const years = Number(data.years);
+
+    if (isNaN(amount) || amount < investmentValidation.amount.min) {
+      throw new Error('Invalid amount');
+    }
+    if (
+      isNaN(rate) ||
+      rate < investmentValidation.rate.min ||
+      rate > investmentValidation.rate.max
+    ) {
+      throw new Error('Invalid rate');
+    }
+    if (isNaN(years) || years < investmentValidation.years.min) {
+      throw new Error('Invalid years');
+    }
+
+    return { amount, rate, years };
+  };
+
+  const handleSubmit = (event: Event): void => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
 
-    const investment: Investment = {
-      amount: Number(formData.get('amount')),
-      rate: Number(formData.get('rate')),
-      years: Number(formData.get('years')),
-    };
-
     try {
+      const data = validateFormData(formData);
+      const investment = parseInvestment(data);
       const result = computeInvestment(investment);
+
       resultContainer.innerHTML = '';
       resultContainer.appendChild(renderResultDisplay(result));
 
-      // Emit event with investment data
       const updateEvent = new CustomEvent('investment-updated', {
         detail: investment,
         bubbles: true,
       });
       container.dispatchEvent(updateEvent);
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        resultContainer.innerHTML = html`<p role="alert">${error.message}</p>`;
-      }
+      resultContainer.innerHTML =
+        error instanceof Error
+          ? html`<p role="alert">${error.message}</p>`
+          : html`<p role="alert">An unexpected error occurred</p>`;
     }
   };
 
