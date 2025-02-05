@@ -1,7 +1,9 @@
+// CSS
+import './styles/theme.css';
+// Components
 import { renderFooter } from './components/footer.component';
 import { createHeader } from './components/header.component';
 import { createMain } from './components/main.component';
-import './styles/theme.css';
 import { createComponent } from './utils/components.function';
 
 function main() {

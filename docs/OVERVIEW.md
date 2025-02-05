@@ -8,11 +8,11 @@
 │   └── JOURNAL.md         # Development journal and decisions
 ├── src/                   # Source code
 │   ├── main.ts            # Application entry point
+│   ├── styles.css         # CSS styles
 │   ├── components/        # Components
 │   ├── logic/             # Logic functions
 │   ├── models/            # Models (types and interfaces)
-│   ├── utils/             # Utility functions
-│   └── styles/            # CSS styles
+│   └── utils/             # Utility functions
 ├── tests/                 # Test files specs
 └── test-results/          # Test execution results
 ├── playwright.config.ts   # Playwright test configuration
