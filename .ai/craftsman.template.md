@@ -4,7 +4,8 @@
 
 ## Code style improvements
 
-Based on code style rules for web and typescript
+{Document and ensure types are used based on code style rules for web and typescript}
+{Do not create or delete any file or folder}
 
 @for (improvement of improvements) {
 
@@ -15,9 +16,9 @@ Based on code style rules for web and typescript
   - {{ instructions to change the code style }}
 ```
 
----
-
 }
+
+---
 
 ## E2E tests
 
@@ -32,9 +33,9 @@ Based on test rules
   - {{ instructions to generate the e2e test files }}
 ```
 
----
-
 }
+
+---
 
 ## Release documentation
 
@@ -49,6 +50,6 @@ Based on docs and git rules
   - {{ instructions to generate the release documentation files }}
 ```
 
----
-
 }
+
+---
