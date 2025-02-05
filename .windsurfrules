@@ -1,0 +1,130 @@
+---
+description: TypeScript
+globs: *.ts
+---
+
+# Type Script rules
+
+- Prefer `type` over `interface`
+- Prefer functions over classes
+- Prefer `#` over `_` for private properties
+- Avoid `null` and `undefined`
+- Avoid deep nested anonymous functions by asigning named functions
+- Avoid deep nested control structures by using early returns
+- Validate data using plain TS functions no ValueObjects needed
+- Avoid external libraries as much as possible
+
+# Html inline
+
+- Declare an `html` const as `const html = String.raw;` for HTML tagged content
+- Add `id` attributes to facilitate selection
+
+# Folder structure
+
+```txt
+docs/
+public/
+src/
+  components/ # for composable UI
+  logic/ # for business logic
+  models/ # for types and interfaces
+  utils/ # for utility functions
+tests/
+```
+
+# File structure
+
+- Export only one artifact per file
+- Use the following naming convention `{{business}}.{{technical}}.ts`, where :
+  - business is related to functional os specification domain
+  - technical is one of: `type`, `component`, `function`
+
+# HTML
+
+- Use standard HTML semantic tags like : `article`, `section`, `nav`, `header`, `footer`, `aside`...
+- Avoid `div` or `p` for layout and use proper semantic tags
+- Add ARIA attributes for accessibility
+- Add `role` attribute when needed
+
+# CSS
+
+- We use PicoCSS as reset to avoid classes
+
+# Images
+
+- Avoid svg and use emojis for icons
+
+# PicoCSS
+
+- Use a basic reset such [PicoCSS](mdc:https:/picocss.com/docs)
+- Use [variables](mdc:https:/picocss.com/docs/css-variables) for colors, fonts, and spacing
+- Use [containers](mdc:https:/picocss.com/docs/container) and [grid](mdc:https:/picocss.com/docs/grid) for layout
+- Nice to have [light/dark](mdc:https:/picocss.com/docs/css-variables#css-variables-for-color-schemes) mode
+
+# Web APIs
+
+- Use fetch API for HTTP requests
+- Use localStorage for data storage
+- Avoid external libraries as much as possible
+
+# Components
+
+- Prefer small components
+- Name them as `src/components/{{name-or-selector}}.component.ts`
+- Only one component per file
+- Do not add features to the main `index.html` page
+
+---
+description: Rules for documenting the code and the project
+globs: 
+---
+# Code
+
+- Add JSDoc comments to public or exported functions
+- Add comments to complex code that explain the why behind the code
+
+# Project
+
+- Keep an `/docs/OVERVIEW.md` file with the tech stack, folder structure, and high-level architecture diagram
+- Keep an `/docs/JOURNAL.md` file with the session chat key actions and decision
+- Keep an `/README.md` file with info about the project and the dev test workflow
+
+---
+description: End to end testing with Playwright
+globs: 
+---
+# Use Playwright
+
+- Use Playwright for e2e testing
+- Create one spec file for each feature at `/tests/{{feature number}}_{{feature name}}.spec.ts`
+- Use **GWT** pattern for describing the tests.
+- Use **AAA** pattern for organizing test code.
+- Name variables following this convention: `inputX`, `mockX`, `actualX`, `expectedX`.
+
+# Selection
+
+- Read the current `src/components` implementation
+- Prefer selection by role and content (like a user would do)
+- Add any `id`, `role` or `name` attribute needed for easy selections.
+
+---
+description: Gir repository commits and tags
+globs: 
+---
+# Initialize
+
+- Initialize if not yet done and add a `.gitignore` file
+
+## Commit
+
+- Add any pending changes
+- Generate a message with the summary of changes
+- Commit using conventional commits
+
+## Release
+
+- Update version in `package.json` using semantic versioning
+- Create or update a `CHANGELOG.md` file with messages from commits since last release
+- Document the changes following [docs.mdc](mdc:.cursor/rules/docs.mdc) guidelines
+- Create a _tag_ for the release
+- Do not push any change
