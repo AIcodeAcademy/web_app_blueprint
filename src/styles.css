@@ -4,6 +4,7 @@
 @import '@fontsource/major-mono-display';
 @import '@fontsource/tomorrow';
 
+/* Colors */
 :root {
   --light-green: #00ff00;
   --dark-green: #00aa00;
