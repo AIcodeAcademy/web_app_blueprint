@@ -4,8 +4,6 @@ import { renderCompoundForm } from './compound-form.component';
 import { renderErrorBoundary } from './error-boundary.component';
 import { renderResultDisplay } from './result-display.component';
 
-const html = String.raw;
-
 /**
  * Extended HTMLElement type with custom event dispatch
  */
