@@ -11,5 +11,6 @@
 
 ## Craftsman
 
-- Follow the instructions in @craftsman.instructions.md  based on @cr@craftsman.template.md and the architecture document @architect.md Save the result at @docs . Ensure the coding, testing, and release sections follow the @type-script.mdc @e2e.mdc and @git.mdc rules
+- Follow the instructions in @craftsman.instructions.md based on @craftsman.template.md and the architecture document @architect.md Save the result at @docsfolder. Ensure the coding, testing, and release sections follow the @rules 
 - Review the @craftsman.md file and make sure it can be used as a prompt for a code generation tool. Ensure it is written in a way that makes sense to code and double-check naming conventions and coding rules.
+- Execute the plan from the @craftsman.md file to generate the project's code. Think step by step and execute one step at a time, create a commit for each step. Choose the most straightforward approach. Follow project rules and coding conventions.
