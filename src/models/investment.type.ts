@@ -1,3 +1,9 @@
+/**
+ * Validation rules for investment inputs
+ * @property {object} amount - Rules for initial investment amount
+ * @property {object} rate - Rules for annual interest rate
+ * @property {object} years - Rules for investment period
+ */
 export type InvestmentValidation = {
   amount: {
     min: number;
@@ -14,6 +20,9 @@ export type InvestmentValidation = {
   };
 };
 
+/**
+ * Default validation rules for investment inputs
+ */
 export const investmentValidation: InvestmentValidation = {
   amount: {
     min: 0,
@@ -30,17 +39,34 @@ export const investmentValidation: InvestmentValidation = {
   },
 } as const;
 
+/**
+ * Investment parameters for calculation
+ * @property {number} amount - Initial investment amount
+ * @property {number} rate - Annual interest rate percentage
+ * @property {number} years - Investment period in years
+ */
 export type Investment = {
   amount: number;
   rate: number;
   years: number;
 };
 
+/**
+ * Result of investment calculation
+ * @property {number} finalAmount - Total amount after interest
+ * @property {number} totalInterest - Total interest earned
+ */
 export type InvestmentResult = {
   finalAmount: number;
   totalInterest: number;
 };
 
+/**
+ * Form data structure for investment inputs
+ * @property {string} amount - Initial investment amount as string
+ * @property {string} rate - Annual interest rate as string
+ * @property {string} years - Investment period as string
+ */
 export type InvestmentFormData = {
   amount: string;
   rate: string;

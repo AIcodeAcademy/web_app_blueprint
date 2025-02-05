@@ -3,6 +3,11 @@ import { formatCurrency } from '../utils/investment.function';
 
 const html = String.raw;
 
+/**
+ * Renders the investment calculation results
+ * @param {InvestmentResult} result - The calculation results to display
+ * @returns {HTMLElement} The result display container with ARIA support
+ */
 export function renderResultDisplay(result: InvestmentResult): HTMLElement {
   const container = document.createElement('div');
   container.className = 'result-display';

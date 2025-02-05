@@ -2,11 +2,23 @@ import { InvestmentValidation } from '../models/investment.type';
 
 const html = String.raw;
 
+/**
+ * Result of validating a form field
+ * @property {boolean} isValid - Whether the field value is valid
+ * @property {string} message - Validation message (empty if valid)
+ */
 type ValidationResult = {
   isValid: boolean;
   message: string;
 };
 
+/**
+ * Validates a single form field value
+ * @param {string} value - The field value to validate
+ * @param {string} fieldName - The name of the field for error messages
+ * @param {InvestmentValidation} validation - Validation rules to apply
+ * @returns {ValidationResult} The validation result
+ */
 function validateField(
   value: string,
   fieldName: string,
@@ -61,6 +73,11 @@ function validateField(
   return { isValid: true, message: '' };
 }
 
+/**
+ * Renders the compound interest calculator form
+ * @param {InvestmentValidation} validation - Validation rules for form fields
+ * @returns {HTMLFormElement} The form element with validation
+ */
 export function renderCompoundForm(validation: InvestmentValidation): HTMLFormElement {
   const form = document.createElement('form');
   form.className = 'compound-form';

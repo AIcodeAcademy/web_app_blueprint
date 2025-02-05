@@ -6,10 +6,18 @@ import { renderResultDisplay } from './result-display.component';
 
 const html = String.raw;
 
+/**
+ * Extended HTMLElement type with custom event dispatch
+ */
 type CalculatorElement = HTMLElement & {
   dispatchEvent(event: CustomEvent<Investment>): boolean;
 };
 
+/**
+ * Renders the main calculator component with form and result display
+ * @returns {CalculatorElement} The calculator container element with custom event dispatch
+ * @fires investment-updated - When a calculation is successful
+ */
 export function renderCalculator(): CalculatorElement {
   const container = document.createElement('div') as CalculatorElement;
   container.setAttribute('role', 'tabpanel');

@@ -1,10 +1,21 @@
 const html = String.raw;
 
+/**
+ * Options for customizing the error boundary behavior
+ * @property {string} [message] - Optional custom error message
+ * @property {() => void} [retry] - Optional retry callback function
+ */
 type ErrorBoundaryOptions = {
   message?: string;
   retry?: () => void;
 };
 
+/**
+ * Renders an error boundary component for consistent error handling
+ * @param {unknown} error - The error object or message to display
+ * @param {ErrorBoundaryOptions} options - Configuration options for the error boundary
+ * @returns {HTMLElement} The error boundary container element
+ */
 export function renderErrorBoundary(
   error: unknown,
   options: ErrorBoundaryOptions = {},
