@@ -4,6 +4,8 @@
 
 ## Code style improvements
 
+Based on code style rules for web and typescript
+
 @for (improvement of improvements) {
 
 ### {{ improvement description }}
@@ -19,6 +21,8 @@
 
 ## E2E tests
 
+Based on test rules
+
 @for (feature of features) {
 
 ### {{ feature description }}
@@ -33,6 +37,8 @@
 }
 
 ## Release documentation
+
+Based on docs and git rules
 
 @for (feature of features) {
 
