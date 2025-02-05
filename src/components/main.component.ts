@@ -1,11 +1,7 @@
+import { createNavigationState, setupTabHandlers, switchTab } from '../logic/navigation.function';
 import { Investment } from '../models/investment.type';
-import { renderCalculator } from './calculator.component';
-import { renderSummaryPage } from './summary-page.component';
-import { renderTablePage } from './table-page.component';
 
 const html = String.raw;
-
-type Tab = 'calculator' | 'table' | 'summary';
 
 export function renderMain(): HTMLElement {
   const main = document.createElement('main');
@@ -62,61 +58,14 @@ export function renderMain(): HTMLElement {
     }
   };
 
-  const switchTab = (tab: Tab) => {
-    // Update tab selection
-    const tabs = nav.querySelectorAll('[role="tab"]');
-    tabs.forEach((tabElement) => {
-      const selected = tabElement.id === `tab-${tab}`;
-      tabElement.setAttribute('aria-selected', selected.toString());
-    });
-
-    // Clear content
-    content.innerHTML = '';
-
-    // Render new content
-    switch (tab) {
-      case 'calculator': {
-        const calculator = renderCalculator();
-        calculator.addEventListener('investment-updated', ((event: CustomEvent<Investment>) => {
-          handleInvestmentUpdate(event.detail);
-        }) as EventListener);
-        content.appendChild(calculator);
-        break;
-      }
-      case 'table': {
-        if (!currentInvestment) return;
-        content.appendChild(renderTablePage(currentInvestment));
-        break;
-      }
-      case 'summary': {
-        if (!currentInvestment) return;
-        content.appendChild(renderSummaryPage(currentInvestment));
-        break;
-      }
-    }
-  };
-
-  // Setup tab handlers
-  const setupTabHandlers = () => {
-    const tabs = nav.querySelectorAll('[role="tab"]');
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const tabId = tab.id.replace('tab-', '') as Tab;
-        switchTab(tabId);
-      });
-    });
-
-    // Initially disable table and summary tabs
-    document.getElementById('tab-table')?.setAttribute('disabled', 'true');
-    document.getElementById('tab-summary')?.setAttribute('disabled', 'true');
-  };
+  const navigationState = createNavigationState(nav, content);
 
   main.appendChild(header);
   main.appendChild(nav);
   main.appendChild(content);
 
-  setupTabHandlers();
-  switchTab('calculator');
+  setupTabHandlers(navigationState);
+  switchTab(navigationState, 'calculator');
 
   return main;
 }
