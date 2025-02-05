@@ -12,6 +12,7 @@ export function renderErrorBoundary(
   const container = document.createElement('div');
   container.className = 'error-boundary';
   container.setAttribute('role', 'alert');
+  container.setAttribute('aria-label', 'Investment calculation error');
   container.setAttribute('aria-live', 'assertive');
 
   const defaultMessage = 'An unexpected error occurred';
@@ -20,8 +21,12 @@ export function renderErrorBoundary(
 
   const content = html`
     <div class="error-content">
-      <p class="error-message">${displayMessage}</p>
-      ${options.retry ? html`<button type="button" class="retry-button">Try Again</button>` : ''}
+      <p class="error-message" role="alert">${displayMessage}</p>
+      ${options.retry
+        ? html`<button type="button" class="retry-button" aria-label="Try calculation again">
+            Try Again
+          </button>`
+        : ''}
     </div>
   `;
 

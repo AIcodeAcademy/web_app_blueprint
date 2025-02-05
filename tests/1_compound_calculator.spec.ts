@@ -28,7 +28,7 @@ test.describe('Compound Calculator Feature', () => {
     await inputAmount.fill('-100');
 
     // Then it should show validation error
-    const errorMessage = page.getByRole('alert');
+    const errorMessage = page.getByRole('alert', { name: /Initial Amount/ });
     await expect(errorMessage).toContainText('must be at least 0');
     await expect(inputAmount).toHaveAttribute('aria-invalid', 'true');
   });
@@ -58,13 +58,17 @@ test.describe('Compound Calculator Feature', () => {
   test('should handle calculation errors', async ({ page }) => {
     // Given invalid investment inputs
     const inputAmount = page.getByRole('spinbutton', { name: 'Initial Amount' });
-    await inputAmount.fill('invalid');
+    await inputAmount.click();
+    await inputAmount.press('Backspace');
+    await inputAmount.press('0');
+    await inputAmount.press('.');
+    await inputAmount.press('0');
 
     // When I try to calculate
     await page.getByRole('button', { name: 'Calculate' }).click();
 
     // Then it should show error message with retry option
-    const errorAlert = page.getByRole('alert');
+    const errorAlert = page.getByRole('alert', { name: /Investment calculation error/i });
     await expect(errorAlert).toContainText('Invalid amount');
     const retryButton = page.getByRole('button', { name: 'Try Again' });
     await expect(retryButton).toBeVisible();
