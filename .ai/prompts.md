@@ -11,4 +11,5 @@
 
 ## Craftsman
 
-Follow the instructions in @craftsman.instructions.md to generate the improvement document following the @craftsman.template.md template and the architecture document in @architecture.md and save it in the @docs folder with the name craftsman.md
+- Follow the instructions in @craftsman.instructions.md  based on @cr@craftsman.template.md and the architecture document @architect.md Save the result at @docs . Ensure the coding, testing, and release sections follow the @type-script.mdc @e2e.mdc and @git.mdc rules
+- Review the @craftsman.md file and make sure it can be used as a prompt for a code generation tool. Ensure it is written in a way that makes sense to code and double-check naming conventions and coding rules.
