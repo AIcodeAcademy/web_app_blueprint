@@ -18,4 +18,4 @@
 
 - Review the @craftsman.md file and make sure it can be used as a prompt for a code generation tool. Ensure it is written in a way that makes sense to code and double-check naming conventions and coding rules.
 
-- Execute the plan from the @craftsman.md file to generate the project's code. Think step by step and execute one step at a time, create a commit for each step. Choose the most straightforward approach. Follow project rules and coding conventions.
+- Execute the plan from the @craftsman.md file to generate the project's code. Think step by step and execute one step at a time,ask the user to create a commit for each step. Choose the most straightforward approach. Follow project rules and coding conventions.
