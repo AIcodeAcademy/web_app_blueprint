@@ -1,37 +1,99 @@
-# Asset Grow Overview
+# Asset Grow - Investment Calculator
 
-## Purpose
+A web application for calculating compound interest and visualizing investment growth over time.
 
-Asset Grow is a web application designed to help users visualize and understand compound interest growth on their investments. It provides an intuitive interface for calculating investment returns over time.
+## Features
 
-## Key Features
+### Calculator
 
-1. Compound Interest Calculator
+- Input validation with real-time feedback
+- Compound interest calculation
+- Accessible error handling
+- Responsive result display
 
-   - Input initial investment amount
-   - Set interest rate
-   - Define investment period
-   - View calculated growth
+### Investment Table
 
-2. Investment Table
+- Detailed year-by-year breakdown
+- Sortable columns
+- Accessible table navigation
+- Dynamic data updates
 
-   - Year-by-year breakdown
-   - Track starting amounts
-   - Monitor interest earned
-   - See cumulative growth
+### Investment Summary
 
-3. Investment Summary
-   - Total final amount
-   - Total interest earned
-   - Growth percentage visualization
+- Key metrics visualization
+- Data persistence between views
+- Accessible content structure
 
-## Technical Details
+## Component Structure
 
-- Frontend-only static application
-- Built with TypeScript and Vite
-- Styled with PicoCSS
-- No backend or database required
-- Responsive design with system color mode support
+### UI Components
+
+- `main.component.ts`: Application shell with navigation
+- `calculator.component.ts`: Main calculation form and results
+- `compound-form.component.ts`: Form with validation
+- `result-display.component.ts`: Calculation results with ARIA support
+- `error-boundary.component.ts`: Error handling with retry
+- `table-page.component.ts`: Investment breakdown table
+- `summary-page.component.ts`: Investment summary view
+
+### Business Logic
+
+- `investment.function.ts`: Core calculation logic
+- `navigation.function.ts`: Tab navigation handling
+- `validation.function.ts`: Input validation rules
+
+### Types and Models
+
+- `investment.type.ts`: Core investment types and validation
+
+## Accessibility Features
+
+### ARIA Support
+
+- Live regions for dynamic updates
+- Alert roles for error messages
+- Proper heading structure
+- Form field descriptions
+
+### Keyboard Navigation
+
+- Tab order optimization
+- Focus management
+- Button interactions
+- Table navigation
+
+### Error Handling
+
+- Clear error messages
+- Retry functionality
+- Validation feedback
+- Screen reader support
+
+## Validation Rules
+
+### Initial Amount
+
+- Minimum: $0
+- Step: $100
+- Required field
+
+### Annual Interest Rate
+
+- Range: 0% to 100%
+- Step: 0.1%
+- Required field
+
+### Investment Period
+
+- Minimum: 1 year
+- Step: 1 year
+- Required field
+
+## Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Responsive design
+- Progressive enhancement
 
 ## Project Information
 
