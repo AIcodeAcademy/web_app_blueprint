@@ -6,8 +6,8 @@ export function createMain() {
   const alertButtonHtml = html`<button class="alertButton">Click me</button>`;
   const componentHtml = html` <article>
     <header>
-      <h1>Hello world!</h1>
-      <p>This is a simple web app with Vite, Pico CSS, and TypeScript.</p>
+      <h1>Asset Grow</h1>
+      <p>Calculate your investment growth over time</p>
     </header>
     <section><span>${doSomething()}</span> ${alertButtonHtml}</section>
   </article>`;
@@ -18,6 +18,6 @@ export function createMain() {
 }
 
 function onAlertButtonClick() {
-  alert('Hello');
-  console.log('Hello');
+  alert('Hello from Asset Grow');
+  console.log('Hello from Asset Grow');
 }

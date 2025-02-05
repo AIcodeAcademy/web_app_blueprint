@@ -1,49 +1,40 @@
-# Technical Overview
+# Asset Grow Overview
 
-## Project Structure
+## Purpose
 
-```
-├── docs/                  # Project documentation
-│   ├── OVERVIEW.md        # Technical overview and architecture
-│   └── JOURNAL.md         # Development journal and decisions
-├── src/                   # Source code
-│   ├── main.ts            # Application entry point
-│   ├── styles.css         # CSS styles
-│   ├── components/        # Components
-│   ├── logic/             # Logic functions
-│   ├── models/            # Models (types and interfaces)
-│   └── utils/             # Utility functions
-├── tests/                 # Test files specs
-└── test-results/          # Test execution results
-├── playwright.config.ts   # Playwright test configuration
-├── package.json           # Project dependencies and scripts
-└── README.md              # Project overview
-```
+Asset Grow is a web application designed to help users visualize and understand compound interest growth on their investments. It provides an intuitive interface for calculating investment returns over time.
 
-## Technologies Used
+## Key Features
 
-- **TypeScript** - Primary programming language
-- **Playwright** - End-to-end testing framework
-- **Node.js** - Runtime environment
-- **Pico CSS** - CSS framework
+1. Compound Interest Calculator
 
-## Testing Strategy
+   - Input initial investment amount
+   - Set interest rate
+   - Define investment period
+   - View calculated growth
 
-Our testing approach focuses on:
+2. Investment Table
 
-1. **Smoke Tests** - Basic functionality verification
-2. **End-to-End Tests** - Full user journey validation
-3. **Automated Reporting** - Test results and artifacts stored in `test-results/`
+   - Year-by-year breakdown
+   - Track starting amounts
+   - Monitor interest earned
+   - See cumulative growth
 
-## Development Workflow
+3. Investment Summary
+   - Total final amount
+   - Total interest earned
+   - Growth percentage visualization
 
-1. Feature development in `src/`
-2. Documentation updates in `docs/`
-3. Test coverage in `tests/`
-4. Continuous testing using Playwright
+## Technical Details
 
-## Best Practices
+- Frontend-only static application
+- Built with TypeScript and Vite
+- Styled with PicoCSS
+- No backend or database required
+- Responsive design with system color mode support
 
-- Keep `JOURNAL.md` updated with key decisions
-- Run smoke tests before commits
-- Maintain comprehensive documentation
+## Project Information
+
+- Created: 2024-03-20
+- Author: [Alberto Basalo](https://github.com/albertobasalo)
+- Organization: [AI code Academy](https://www.aicode.academy)

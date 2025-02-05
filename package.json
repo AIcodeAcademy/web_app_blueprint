@@ -1,40 +1,30 @@
 {
-  "name": "web_app_blueprint",
-  "description": "Web App Blueprint for cursor agent",
-  "author": {
-    "name": "Alberto Basalo",
-    "url": "https://albertobasalo.dev"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AIcodeAcademy/web_app_blueprint.git"
-  },
+  "name": "asset-grow",
+  "description": "Asset Grow is a web application for the general public that calculates compound interest to visualize investment growth over time.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write ."
   },
-  "devDependencies": {
-    "@eslint/js": "^9.19.0",
-    "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.1",
-    "eslint": "^9.19.0",
-    "eslint-config-prettier": "^10.0.1",
-    "globals": "^15.14.0",
-    "prettier": "^3.4.2",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.23.0",
-    "vite": "^6.0.5"
+  "author": {
+    "name": "Alberto Basalo",
+    "url": "https://github.com/albertobasalo",
+    "email": "albertobasalo@aicode.academy"
   },
   "dependencies": {
-    "@fontsource/fira-mono": "^5.1.1",
-    "@fontsource/major-mono-display": "^5.1.1",
-    "@fontsource/tomorrow": "^5.1.1",
-    "@picocss/pico": "^2.0.6"
+    "@picocss/pico": "^1.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "@playwright/test": "^1.40.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0"
   }
 }
