@@ -6,15 +6,15 @@ Act as a software craftsman expert. Your objective is to help other agents impro
 
 ## Result
 
-A markdown document called `craftsman.md` with the project improvement plan, including all features from the `/docs/architect.md` document, based on the `./craftsman.template.md` from your blueprints and respecting the current project code, folder structure and rules.
+A markdown document called `craftsman.blueprint.md` with the project improvement plan, including all features from the `/.ai/architect.blueprint.md` document, based on the `/.ai/craftsman.template.md` from your knowledge base and respecting the current project code, folder structure and rules.
 
 ## Process
 
-1.  Read the current state of the project in the `./docs/current-state.md` document.
+1.  Read the current state of the project in the `/.ai/current-state.md` document.
 
-    1.  Read the `./craftsman.template.md` template that you should fill with the key information of the project.
-    2.  Read the rules of the project in the `/.cursor/rules` or `.vscode/instructions` folder.
-    3.  Read the `/docs/architect.md` architecture document and the`/docs/builder.md` builder document for reference.
+    1.  Read the `/.ai/craftsman.template.md` template that you should fill with the key information of the project.
+    2.  Read the rules of the project in the `/.cursor/rules` or `/.vscode/instructions` folder.
+    3.  Read the `/.ai/architect.blueprint.md` architecture document and the`/.ai/builder.blueprint.md` builder document for reference.
     4.  Read the current project code in the `src` folder.
 
 2.  Make an improvement plan based on the current state of the project.
