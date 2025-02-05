@@ -1,6 +1,7 @@
 import { computeInvestment } from '../logic/investment.function';
 import { Investment, InvestmentFormData, investmentValidation } from '../models/investment.type';
 import { renderCompoundForm } from './compound-form.component';
+import { renderErrorBoundary } from './error-boundary.component';
 import { renderResultDisplay } from './result-display.component';
 
 const html = String.raw;
@@ -18,6 +19,7 @@ export function renderCalculator(): CalculatorElement {
   const form = renderCompoundForm(investmentValidation);
   const resultContainer = document.createElement('div');
   resultContainer.id = 'result-container';
+  resultContainer.setAttribute('aria-live', 'polite');
 
   const validateFormData = (formData: FormData): InvestmentFormData => {
     const data = {
@@ -55,10 +57,7 @@ export function renderCalculator(): CalculatorElement {
     return { amount, rate, years };
   };
 
-  const handleSubmit = (event: Event): void => {
-    event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-
+  const calculateInvestment = (formData: FormData): void => {
     try {
       const data = validateFormData(formData);
       const investment = parseInvestment(data);
@@ -73,11 +72,19 @@ export function renderCalculator(): CalculatorElement {
       });
       container.dispatchEvent(updateEvent);
     } catch (error: unknown) {
-      resultContainer.innerHTML =
-        error instanceof Error
-          ? html`<p role="alert">${error.message}</p>`
-          : html`<p role="alert">An unexpected error occurred</p>`;
+      resultContainer.innerHTML = '';
+      resultContainer.appendChild(
+        renderErrorBoundary(error, {
+          retry: () => form.dispatchEvent(new Event('submit')),
+        }),
+      );
     }
+  };
+
+  const handleSubmit = (event: Event): void => {
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    calculateInvestment(formData);
   };
 
   form.addEventListener('submit', handleSubmit);

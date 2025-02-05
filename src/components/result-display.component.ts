@@ -6,17 +6,26 @@ const html = String.raw;
 export function renderResultDisplay(result: InvestmentResult): HTMLElement {
   const container = document.createElement('div');
   container.className = 'result-display';
+  container.setAttribute('role', 'region');
+  container.setAttribute('aria-label', 'Investment calculation results');
+  container.setAttribute('aria-live', 'polite');
 
   const content = html`
-    <h2>Investment Results</h2>
-    <div class="result-item">
-      <span class="label">Final Amount:</span>
-      <span class="value">${formatCurrency(result.finalAmount)}</span>
-    </div>
-    <div class="result-item">
-      <span class="label">Total Interest Earned:</span>
-      <span class="value">${formatCurrency(result.totalInterest)}</span>
-    </div>
+    <h2 id="results-heading">Investment Results</h2>
+    <dl role="list" aria-labelledby="results-heading">
+      <div class="result-item" role="listitem">
+        <dt class="label">Final Amount:</dt>
+        <dd class="value" aria-label="Final investment amount">
+          ${formatCurrency(result.finalAmount)}
+        </dd>
+      </div>
+      <div class="result-item" role="listitem">
+        <dt class="label">Total Interest Earned:</dt>
+        <dd class="value" aria-label="Total interest earned">
+          ${formatCurrency(result.totalInterest)}
+        </dd>
+      </div>
+    </dl>
   `;
 
   container.innerHTML = content;
