@@ -4,48 +4,56 @@
 @import '@fontsource/major-mono-display';
 @import '@fontsource/tomorrow';
 
+:root {
+  --light-green: #00ff00;
+  --dark-green: #00aa00;
+  --light-blue: #00ccff;
+  --dark-blue: #007fff;
+}
+
 /* dark theme */
-[data-theme=dark] {
+[data-theme='dark'] {
   --pico-color: white;
   --pico-background-color: black;
-  --pico-primary: lime;
-  --pico-primary-hover: LimeGreen;
-  --pico-primary-background: lime;
-  --pico-primary-hover-background: LimeGreen  ;
+  --pico-primary: var(--light-green);
+  --pico-primary-hover: var(--dark-green);
+  --pico-primary-background: var(--light-green);
+  --pico-primary-hover-background: var(--dark-green);
   --pico-primary-inverse: black;
-  --pico-underline: LimeGreen;
-  --pico-primary-underline: LimeGreen;
-  --pico-secondary: cyan  ;
-  --pico-secondary-hover: turquoise  ;
-  --pico-secondary-background: cyan  ;
-  --pico-secondary-hover-background: turquoise ;
+  --pico-underline: var(--light-green);
+  --pico-primary-underline: var(--light-green);
+  --pico-secondary: var(--light-blue);
+  --pico-secondary-hover: var(--dark-blue);
+  --pico-secondary-background: var(--light-blue);
+  --pico-secondary-hover-background: var(--dark-blue);
   color-scheme: dark;
 }
 
 /* light theme */
-[data-theme=light],:root:not([data-theme=dark]){
-  --pico-color: black;  
+[data-theme='light'],
+:root:not([data-theme='dark']) {
+  --pico-color: black;
   --pico-background-color: white;
-  --pico-primary: LimeGreen;
-  --pico-primary-hover: lime;
-  --pico-primary-background: LimeGreen;
-  --pico-primary-hover-background: lime;
+  --pico-primary: var(--dark-green);
+  --pico-primary-hover: var(--light-green);
+  --pico-primary-background: var(--dark-green);
+  --pico-primary-hover-background: var(--light-green);
   --pico-primary-inverse: white;
-  --pico-underline: lime;
-  --pico-primary-underline: lime;
-  --pico-secondary: turquoise  ;
-  --pico-secondary-hover: cyan;
-  --pico-secondary-background: turquoise;
-  --pico-secondary-hover-background: cyan;
+  --pico-underline: var(--dark-green);
+  --pico-primary-underline: var(--dark-green);
+  --pico-secondary: var(--dark-blue);
+  --pico-secondary-hover: var(--light-blue);
+  --pico-secondary-background: var(--dark-blue);
+  --pico-secondary-hover-background: var(--light-blue);
   color-scheme: light;
 }
 
 /* Minimal CSS reset */
 :root {
-  --pico-font-family: "Fira Mono", Consolas, monospace;
-  --pico-font-family-emoji: "Major Mono Display", Consolas, monospace;
+  --pico-font-family: 'Fira Mono', Consolas, monospace;
+  --pico-font-family-emoji: 'Major Mono Display', Consolas, monospace;
   --pico-font-family-sans-serif: Tomorrow, Roboto, Helvetica, Arial, sans-serif;
-  --pico-font-family-monospace: "Fira Mono", Consolas, monospace;
+  --pico-font-family-monospace: 'Fira Mono', Consolas, monospace;
   --pico-border-radius: 0rem;
   background-color: var(--pico-background-color);
 }
@@ -53,15 +61,33 @@
 body {
   color: var(--pico-color);
   background-color: var(--pico-background-color);
-  padding-top: 1%;  
+  padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 3%;
   padding-right: 3%;
-  font-family: var(--pico-font-family-monospace);
+  font-family: var(--pico-font-family);
 }
 
-h1, h2, h3, h4, h5, h6, label {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
   font-family: var(--pico-font-family-sans-serif);
+}
+
+h1 {
+  --pico-font-size: 2.5rem;
+  --pico-line-height: 1.5;
+  --pico-typography-spacing-top: 3.5rem;
+}
+
+h2 {
+  --pico-font-size: 2rem;
+  --pico-line-height: 1.125;
+  --pico-typography-spacing-top: 3rem;
 }
 
 /* Logo */
@@ -73,11 +99,10 @@ span {
   padding-right: 1%;
 }
 
-[data-theme=light] .light {
+[data-theme='light'] .light {
   display: none;
 }
 
-[data-theme=dark] .dark {
+[data-theme='dark'] .dark {
   display: none;
 }
-
