@@ -1,188 +1,171 @@
 # Craftsman Document: Asset Grow
 
-A web application for calculating and visualizing compound interest growth over time, focusing on code quality and maintainability improvements.
+A web application for calculating compound interest growth, focusing on maintainable code organization and quality improvements.
 
 ## Code style improvements
 
 Based on code style rules for web and typescript
 
-### Semantic HTML Structure
+### Component Organization
 
 ```text
-- src/components/calculator.component.ts
-  - Replace <div class="calculator"> with <article id="calculator" aria-label="compound interest calculator">
-  - Update form element: <form id="compound-form" role="form" aria-label="investment calculator">
-  - Add input attributes:
-    - <input type="number" id="amount" name="amount" min="0" step="100" required aria-label="initial investment amount">
-    - <input type="number" id="rate" name="rate" min="0" max="100" step="0.1" required aria-label="interest rate">
-    - <input type="number" id="years" name="years" min="1" max="100" step="1" required aria-label="investment period">
+- src/components/layout/
+  - Create header.component.ts
+    - Add semantic header with nav
+    - Include aria-labels for navigation
+  - Create footer.component.ts
+    - Add semantic footer with links
+    - Include attribution and version
 
-- src/components/table.component.ts
-  - Structure table with proper semantics:
-    <table id="investment-table" aria-label="yearly investment breakdown">
-      <thead>
-        <tr>
-          <th scope="col" aria-sort="none">Year</th>
-          <th scope="col" aria-sort="none">Starting Amount</th>
-          <!-- ... other headers -->
-        </tr>
-      </thead>
-      <tbody>
-        <!-- dynamic content -->
-      </tbody>
-    </table>
+- src/components/calculator/
+  - Move compound-form.component.ts
+  - Move result-display.component.ts
+  - Update imports in calculator.component.ts
 
-- src/components/summary.component.ts
-  - Update structure:
-    <article id="investment-summary">
-      <header>
-        <h2>Investment Summary</h2>
-      </header>
-      <section aria-label="key investment metrics">
-        <!-- metrics content -->
-      </section>
-    </article>
+- src/components/table/
+  - Move table.component.ts
+  - Create table-header.component.ts
+  - Create table-row.component.ts
+
+- src/components/summary/
+  - Move summary.component.ts
+  - Create metric-card.component.ts
 ```
 
-### Type Safety Enhancements
+### Type Safety and Validation
 
 ```text
-- src/models/investment.type.ts
-  - export type SortDirection = 'asc' | 'desc'
-  - export type SortableField = 'year' | 'startAmount' | 'interest' | 'endAmount' | 'cumulativeInterest'
-  - export type Investment = {
-      readonly amount: number;
-      readonly rate: number;
-      readonly years: number;
-    }
-  - export type ValidationResult = {
-      readonly isValid: boolean;
-      readonly message?: string;
-    }
+- src/models/validation.type.ts
+  - Create type ValidationError = { field: string; message: string }
+  - Create type ValidationResult = { isValid: boolean; errors: ValidationError[] }
 
-- src/models/yearly-result.type.ts
-  - export type YearlyResult = {
-      readonly year: number;
-      readonly startAmount: number;
-      readonly interest: number;
-      readonly endAmount: number;
-      readonly cumulativeInterest: number;
-    }
+- src/utils/validation.function.ts
+  - Create validateAmount(amount: number): ValidationError[]
+  - Create validateRate(rate: number): ValidationError[]
+  - Create validateYears(years: number): ValidationError[]
+
+- src/models/calculator.type.ts
+  - Add readonly modifiers to all properties
+  - Add branded types for Amount, Rate, and Years
 ```
 
-### Function Organization
+### Error Handling
 
 ```text
-- src/utils/calculator.function.ts
-  /**
-   * Validates investment input parameters
-   * @param investment The investment parameters to validate
-   * @returns ValidationResult with isValid flag and optional error message
-   */
-  export function validateInvestment(investment: Investment): ValidationResult {
-    if (investment.amount <= 0) return { isValid: false, message: "Amount must be positive" };
-    if (investment.rate < 0 || investment.rate > 100) return { isValid: false, message: "Rate must be between 0 and 100" };
-    if (investment.years < 1) return { isValid: false, message: "Years must be at least 1" };
-    return { isValid: true };
-  }
+- src/utils/error.function.ts
+  - Create displayError(error: ValidationError): void
+  - Create clearErrors(): void
 
-- src/logic/investment.function.ts
-  - export const handleFormSubmit = (event: Event) => {
-      event.preventDefault();
-      const formData = getFormData(event);
-      const validation = validateInvestment(formData);
-      if (!validation.isValid) return showError(validation.message);
-      const result = calculateInvestment(formData);
-      displayResult(result);
-    }
+- src/components/calculator/error-display.component.ts
+  - Create renderError(error: ValidationError): HTMLElement
+  - Add aria-live region for error messages
 ```
 
 ## E2E tests
 
 Based on test rules
 
-### Compound Calculator Tests
+### Calculator Feature Tests
 
 ```text
 - tests/1_compound_calculator.spec.ts
-  test('should calculate compound interest correctly', async ({ page }) => {
-    // Given a user visits the calculator page
+  - Test valid input calculations
+  - Test input validation errors
+  - Test form submission
+  test('should validate investment amount', async ({ page }) => {
+    // Given the calculator page
     await page.goto('/');
 
-    // When they input valid investment data
-    await page.getByLabel('initial investment amount').fill('1000');
-    await page.getByLabel('interest rate').fill('5');
-    await page.getByLabel('investment period').fill('10');
+    // When entering invalid amount
+    await page.getByRole('spinbutton', { name: 'initial investment amount' }).fill('-100');
     await page.getByRole('button', { name: 'Calculate' }).click();
 
-    // Then they should see the correct result
-    const result = await page.getByTestId('final-amount').textContent();
-    expect(result).toBe('1,628.89');
+    // Then shows validation error
+    const error = await page.getByRole('alert').textContent();
+    expect(error).toContain('Amount must be positive');
   });
 ```
 
-### Investment Table Tests
+### Table Feature Tests
 
 ```text
 - tests/2_investment_table.spec.ts
-  - Test table rendering
-  - Test sorting functionality
-  - Test data accuracy
-  - Test row calculations
+  test('should sort table by year', async ({ page }) => {
+    // Given a populated investment table
+    await page.goto('/');
+    await fillValidInvestment(page);
+
+    // When clicking year header
+    await page.getByRole('columnheader', { name: 'Year' }).click();
+
+    // Then table is sorted
+    const firstYear = await page.getByRole('row').nth(1).getByRole('cell').first().textContent();
+    expect(firstYear).toBe('1');
+  });
 ```
 
-### Investment Summary Tests
+### Summary Feature Tests
 
 ```text
 - tests/3_investment_summary.spec.ts
-  - Test summary calculations
-  - Test display formatting
-  - Test percentage calculations
+  test('should display correct growth percentage', async ({ page }) => {
+    // Given investment data
+    await page.goto('/');
+    await fillValidInvestment(page);
+
+    // When calculation completes
+    await page.getByRole('button', { name: 'Calculate' }).click();
+
+    // Then shows correct percentage
+    const growth = await page.getByTestId('growth-percentage').textContent();
+    expect(growth).toMatch(/\d+\.\d+%/);
+  });
 ```
 
 ## Release documentation
 
 Based on docs and git rules
 
-### Initial Setup Documentation
+### Code Documentation
 
 ```text
-- docs/SETUP.md
-  - Document development environment setup
-  - List required dependencies
-  - Add npm scripts documentation
+- src/components/README.md
+  - Document component organization
+  - Explain component communication
+  - List available components
 
-- CHANGELOG.md
-  - Add initial version entry
-  - Document feature implementations
+- src/utils/README.md
+  - Document utility functions
+  - Explain validation rules
+  - List helper functions
 ```
 
 ### Feature Documentation
 
 ```text
-- docs/features/compound-calculator.md
-  - Document calculation formulas
-  - Add validation rules
-  - Include usage examples
-
-- docs/features/investment-table.md
-  - Document table structure
-  - Add sorting functionality
-  - Include column descriptions
-
-- docs/features/investment-summary.md
-  - Document metrics calculation
-  - Add formatting rules
+- docs/features/
+  - calculator.md
+    - Document input constraints
+    - Explain validation rules
+    - List error messages
+  - table.md
+    - Document sorting behavior
+    - Explain column calculations
+  - summary.md
+    - Document metric calculations
+    - Explain percentage rules
 ```
 
 ### Release Notes
 
 ```text
-- Version: 1.0.0
-- Tag: v1.0.0
-- Commit message: feat: initial release of Asset Grow calculator
-- CHANGELOG.md updates:
-  - Add Features section
-  - Add Technical Improvements section
-  - Add Testing Coverage section
+- CHANGELOG.md
+  feat: reorganize components into feature folders
+  feat: add input validation with error messages
+  feat: improve table sorting functionality
+  test: add comprehensive e2e test suite
+  docs: add component and utility documentation
+
+- Version: 1.1.0
+- Tag: v1.1.0
 ```
