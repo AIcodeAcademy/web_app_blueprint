@@ -8,58 +8,77 @@ A web application for calculating and visualizing compound interest growth over 
 
 ```text
 - Create src/components/layout/ folder
-  - Move header.component.ts and footer.component.ts to layout folder
-  - Update imports in main.ts
+  - Move header.component.ts -> layout/header.component.ts
+  - Move footer.component.ts -> layout/footer.component.ts
+  - Update main.ts imports using relative paths
 - Create src/components/calculator/ folder
-  - Move calculator related components
+  - Create calculator/compound-form.component.ts
+  - Create calculator/result-display.component.ts
+  - Create calculator/calculator-page.component.ts
 - Create src/components/table/ folder
-  - Move table.component.ts and table-page.component.ts
+  - Move table.component.ts -> table/investment-table.component.ts
+  - Move table-page.component.ts -> table/table-page.component.ts
 - Create src/components/summary/ folder
-  - Move summary related components
+  - Create summary/metrics-display.component.ts
+  - Create summary/summary-page.component.ts
 ```
 
 ### Type Safety Enhancements
 
 ```text
 - Enhance src/models/ folder
-  - Add index.ts barrel file
-  - Add strict interfaces for all types
-  - Add readonly modifiers to prevent mutations
-  - Create type guards for validation
+  - Create models/index.ts with exports
+  - Create models/investment.interface.ts
+    export interface Investment { amount: number; rate: number; years: number }
+  - Create models/result.interface.ts
+    export interface Result<T> { success: boolean; data?: T; error?: string }
+  - Add readonly modifiers to all interfaces
+  - Create models/guards.ts with type predicates
 ```
 
 ### Function Organization
 
 ```text
 - Enhance src/utils/ folder
-  - Create utils/formatters/ for currency and date functions
-  - Create utils/validators/ for input validation
-  - Add utils/constants.ts for app constants
-  - Add index.ts barrel file
+  - Create utils/formatters/currency.ts
+    export const formatCurrency = (amount: number): string
+  - Create utils/formatters/percentage.ts
+    export const formatPercentage = (value: number): string
+  - Create utils/validators/investment.ts
+    export const validateInvestment = (input: Investment): Result<boolean>
+  - Create utils/constants.ts
+    export const MIN_AMOUNT = 100
+    export const MAX_YEARS = 50
+  - Create utils/index.ts with exports
 - Enhance src/logic/ folder
-  - Create logic/calculators/ for computation functions
-  - Create logic/mappers/ for data transformations
-  - Implement Result pattern for error handling
-  - Add TSDoc documentation
+  - Create logic/calculators/compound.ts
+    export const calculateCompound = (input: Investment): Result<number>
+  - Create logic/mappers/yearly-result.ts
+    export const mapToYearlyResults = (input: Investment): YearlyResult[]
+  - Create logic/store/investment.store.ts
+    export class InvestmentStore extends EventTarget
 ```
 
 ### State Management
 
 ```text
-- Create src/logic/store/ folder
-  - Add investment.store.ts for central state
-  - Implement pub/sub pattern for updates
-  - Add type-safe action creators
+- Create src/logic/store/investment.store.ts
+  - Add InvestmentState interface
+  - Implement subscribe(callback: (state: InvestmentState) => void)
+  - Add dispatch(action: InvestmentAction): void
+  - Create action creators for calculations
 ```
 
 ### Component Architecture
 
 ```text
 - Enhance component structure
-  - Split each component into view/logic files
-  - Create shared components for common UI elements
-  - Add error boundaries
-  - Implement loading states
+  - Split each component into:
+    component-name.view.ts - HTML template
+    component-name.component.ts - Logic and events
+  - Create components/shared/error-boundary.ts
+  - Create components/shared/loading-spinner.ts
+  - Add data-testid attributes for testing
 ```
 
 ## E2E tests
@@ -68,48 +87,54 @@ A web application for calculating and visualizing compound interest growth over 
 
 ```text
 - Create tests/1_compound_calculator.spec.ts
-  - Add data-testid attributes to form inputs and results
-  - Given a user visits the calculator page
-    When they enter valid investment data
-    Then they should see the calculated results
-  - Given invalid input
-    When the form is submitted
-    Then error messages should be displayed
-  - Arrange test data with inputAmount, inputRate, inputYears
-  - Act with form interactions using role selectors
-  - Assert results match expectedTotal, expectedInterest
+  - Add selectors:
+    [data-testid="amount-input"]
+    [data-testid="rate-input"]
+    [data-testid="years-input"]
+    [data-testid="calculate-button"]
+    [data-testid="result-display"]
+  - Test scenarios:
+    describe('Compound Calculator')
+      test('should calculate compound interest')
+      test('should validate input fields')
+      test('should display formatted results')
+  - Use variables:
+    const inputAmount = 1000
+    const expectedTotal = 1610.51
 ```
 
 ### 2_investment_table.spec.ts
 
 ```text
 - Create tests/2_investment_table.spec.ts
-  - Add data-testid attributes to table elements
-  - Given calculated investment results
-    When viewing the table
-    Then yearly breakdowns should be displayed
-  - Given the table is displayed
-    When clicking column headers
-    Then results should be sorted
-  - Arrange test data with inputInvestment
-  - Act with table interactions using role selectors
-  - Assert table content matches expectedResults
+  - Add selectors:
+    [data-testid="investment-table"]
+    [data-testid="year-header"]
+    [data-testid="amount-header"]
+  - Test scenarios:
+    describe('Investment Table')
+      test('should display yearly breakdown')
+      test('should sort by column click')
+  - Use variables:
+    const inputInvestment: Investment
+    const expectedResults: YearlyResult[]
 ```
 
 ### 3_investment_summary.spec.ts
 
 ```text
 - Create tests/3_investment_summary.spec.ts
-  - Add data-testid attributes to summary elements
-  - Given a completed calculation
-    When viewing the summary
-    Then key metrics should be displayed
-  - Given updated input values
-    When recalculating
-    Then summary should update
-  - Arrange test data with inputInvestment
-  - Act with form submissions using role selectors
-  - Assert metrics match expectedSummary
+  - Add selectors:
+    [data-testid="total-amount"]
+    [data-testid="total-interest"]
+    [data-testid="growth-percentage"]
+  - Test scenarios:
+    describe('Investment Summary')
+      test('should display investment metrics')
+      test('should update on recalculation')
+  - Use variables:
+    const inputInvestment: Investment
+    const expectedSummary: Summary
 ```
 
 ## Release documentation
@@ -117,58 +142,60 @@ A web application for calculating and visualizing compound interest growth over 
 ### Version Control
 
 ```text
-- Update package.json version following semver
+- Update package.json version to "1.0.0"
 - Generate CHANGELOG.md entries:
-  feat: Implement compound interest calculator
-  feat: Add investment table with yearly breakdown
-  feat: Create investment summary view
-  test: Add e2e test suite
-  docs: Add component and setup documentation
+  feat(calculator): implement compound interest calculator
+  feat(table): add investment table with yearly breakdown
+  feat(summary): create investment summary view
+  test(e2e): add playwright test suite
+  docs(api): add component documentation
 ```
 
 ### Release Tags
 
 ```text
-- Create release tag v1.0.0
-- Include release notes from CHANGELOG.md
-- Document breaking changes if any
-- List new features and improvements
-- Add setup and testing instructions
+- git tag -a v1.0.0 -m "Initial release"
+- Include CHANGELOG.md entries in tag message
+- Document features:
+  - Compound interest calculator
+  - Investment table
+  - Investment summary
 ```
 
 ### Documentation Updates
 
 ```text
 - Create docs/SETUP.md
-  - Development environment setup
-  - Build and deployment instructions
-  - Environment configuration
+  - npm install instructions
+  - npm run dev for development
+  - npm run build for production
+  - npm run test:e2e for testing
 ```
 
 ### Component Documentation
 
 ```text
-- Create docs/components/
-  - Document component hierarchy
-  - Document props and events
-  - Add usage examples
+- Create docs/components/README.md
+  - Document component props and events
+  - Add code examples with TypeScript
+  - Include accessibility attributes
 ```
 
 ### Testing Guide
 
 ```text
 - Create docs/TESTING.md
-  - Document GWT pattern usage
-  - Explain AAA test structure
-  - Document selector strategies
-  - Add CI/CD integration guide
+  - Document GWT pattern with examples
+  - Explain AAA pattern implementation
+  - List all data-testid attributes
+  - Document Playwright commands
 ```
 
 ### Architecture Documentation
 
 ```text
 - Update docs/ARCHITECTURE.md
-  - Add detailed component flow
-  - Document state management
-  - Add performance considerations
+  - Add component dependency graph
+  - Document state management flow
+  - List performance optimizations
 ```

@@ -15,8 +15,9 @@ A markdown document called `craftsman.md` with the project improvement plan, inc
 3. Read the `/docs/architect.md` architecture document.
 4. Read the rest of the documents in the `/docs` folder.
 5. Read the current project code in the `src` folder.
-6. Make a plan of improvements.
-7. Review the plan and be sure to cover all the code and in the correct order.
-8. Generate the project improvement plan document following the established template and save it in `/docs/craftsman.md`
-9. Review the document for inconsistencies in naming, redundant or disorganized steps.
-10. Ensure the document is correctly structured according to the template and each functionality is separated in its own section.
+6. Do not change the main folder structure at src. kee with components/ logic/ models/ utils/ Make any subfolder if you need to
+7. Make a plan of improvements based on the template and the project code.
+8. Review the plan and be sure to cover all the code and in the correct order.
+9. Generate the project improvement plan document following the established template and save it in `/docs/craftsman.md`
+10. Review the document for inconsistencies in naming, redundant or disorganized steps.
+11. Ensure the document is correctly structured according to the template and each functionality is separated in its own section.
