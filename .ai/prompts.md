@@ -1,7 +1,11 @@
 ## Architect
 
-Sigue las instrucciones de @architect.instructions.md para generar el documento de arquitectura según la plantilla de @architect.template.md y guardalo en docs/architecture.md
+Follow the instructions in @architect.instructions.md to generate the architecture document following the @architect.template.md template and save it in docs/architecture.md
 
 ## Builder
 
-Sigue las instrucciones de @builder.instructions.md para generar el documento de construcción según la plantilla de @builder.template.md y el documento de arquitectura en @architecture.md y guárdalo en la carpeta @docs con el nombre build.md
+Follow the instructions in @builder.instructions.md to generate the construction document following the @builder.template.md template and the architecture document in @architecture.md and save it in the @docs folder with the name build.md
+
+## Craftsman
+
+Follow the instructions in @craftsman.instructions.md to generate the improvement document following the @craftsman.template.md template and the architecture document in @architecture.md and save it in the @docs folder with the name craftsman.md
