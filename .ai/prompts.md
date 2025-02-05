@@ -10,6 +10,8 @@
 
 - Review the @builder.md file and make sure it could be used as a prompt for a code generation tool. Ensure it is written in a way that makes sense to code and double check naming conventions and coding rules.
 
+- Execute the plan from the @builder.md file to generate the project's code. Think step by step and execute one step at a time. Choose the most straightforward approach. Follow project rules and coding conventions.
+
 ## Craftsman
 
 Follow the instructions in @craftsman.instructions.md to generate the improvement document following the @craftsman.template.md template and the architecture document in @architecture.md and save it in the @docs folder with the name docs/craftsman.md
