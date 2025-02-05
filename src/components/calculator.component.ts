@@ -3,6 +3,8 @@ import { Investment } from '../models/investment.type';
 import { renderCompoundForm } from './compound-form.component';
 import { renderResultDisplay } from './result-display.component';
 
+const html = String.raw;
+
 export function renderCalculator(): HTMLElement {
   const container = document.createElement('div');
   container.setAttribute('role', 'tabpanel');
