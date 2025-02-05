@@ -4,16 +4,14 @@ AssetGrow is a web application for the general public that serves as a compound 
 
 ## Main Features
 
-1. `1_feature_one`
+1. Compound Interest Input Form
+   A form to enter data on initial capital, interest rate, accumulation period, and years of investment.
 
-   - A form to enter data on initial capital, interest rate, accumulation period, and years of investment.
+2. Yearly Capital Growth Table
+   A table to see year by year the evolution of capital and the interest generated each year.
 
-2. `2_feature_two`
-
-   - A table to see year by year the evolution of capital and the interest generated each year.
-
-3. `3_feature_three`
-   - A summary with the total interest, the final capital, and the profit percentage.
+3. Aggregate Results Summary
+   A summary with the total interest, the final capital, and the profit percentage.
 
 ## Specifications
 
