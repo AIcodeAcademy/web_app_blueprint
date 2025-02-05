@@ -1,7 +1,7 @@
 ## Architect
 
 - Follow the instructions in @architect.instructions.md to generate the architecture document following the @architect.template.md template and save it in docs/architect.md
-- Use the @architecture.md file as a reference to change any project and author information at: readme.md, package.json, docs/overview.md, index.html, src/components/main.component.ts
+- Use the @architecture.md file as a reference to change any project and author information at: readme.md, package.json, docs/overview.md, index.html, src/components/*
 
 ## Builder
 
