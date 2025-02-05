@@ -3,7 +3,7 @@ import { createThemeToggle } from './toggle-theme.component';
 export function createHeader() {
   const html = String.raw;
   const headerComponent = document.createElement('header');
-  const title = 'Web App Blueprint!';
+  const title = 'Asset Grow!';
   const githubUrl = 'https://github.com/AIcodeAcademy/web_app_blueprint';
   const headerHtml = html`
     <nav>
