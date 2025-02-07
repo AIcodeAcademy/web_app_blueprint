@@ -1,21 +1,21 @@
 ---
-description: Gir repository commits and tags
+description: Rules for using git repository commits and release tags
 globs: 
 ---
-# Initialize
+# Initialize repo
 
-- Initialize if not yet done and add a `.gitignore` file
+- Initialize if not yet done and add a `.gitignore` file for the current tech stack
 
-## Commit
+## Git commits
 
 - Add any pending changes
 - Generate a message with the summary of changes
-- Commit using conventional commits
+- Usi conventional commits for messages
 
-## Release
+## Git release
 
-- Update version in `package.json` using semantic versioning
 - Create or update a `CHANGELOG.md` file with messages from commits since last release
+- Update version in `package.json` using semantic versioning
 - Document the changes following [docs.mdc](mdc:.cursor/rules/docs.mdc) guidelines
 - Create a _tag_ for the release
-- Do not push any change
+- Do not push any change, keep your work at local repository

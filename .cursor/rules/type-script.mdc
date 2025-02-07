@@ -1,12 +1,12 @@
 ---
-description: TypeScript
+description: Rules for writing TypeScript code
 globs: *.ts
 ---
 # Type Script rules
 
 - Prefer `type` over `interface`
 - Prefer functions over classes
-- Prefer `#` over `_` for private properties
+- Prefer `#` over `_` for private members
 - Avoid `null` and `undefined`
 - Avoid deep nested anonymous functions by asigning named functions
 - Avoid deep nested control structures by using early returns
@@ -16,9 +16,11 @@ globs: *.ts
 # Html inline 
 
 - Declare an `html` const as `const html = String.raw;` for HTML tagged content
-- Add `id` attributes to facilitate selection
+- Add `id` `name` or `role` attributes to facilitate node selections
 
 # Folder structure
+
+- For simple web projects prefer organization by technology rather tha feature
 
 ```txt
 docs/ 
@@ -35,5 +37,5 @@ tests/
 
 - Export only one artifact per file
 - Use the following naming convention `{{business}}.{{technical}}.ts`, where :
-  - business is related to functional os specification domain
-  - technical is one of: `type`, `component`, `function` 
+  - business is related to functional or specification domain
+  - technical is one of: `type` | `component` | `function` 

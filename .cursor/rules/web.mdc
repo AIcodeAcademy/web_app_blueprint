@@ -1,17 +1,18 @@
 ---
-description: Html and css code
+description: Html and css code rules
 globs: 
 ---
-# HTML
+# HTML rules
 
 - Use standard HTML semantic tags like : `article`, `section`, `nav`, `header`, `footer`, `aside`...
 - Avoid `div` or `p` for layout and use proper semantic tags
 - Add ARIA attributes for accessibility 
 - Add `role` attribute when needed
 
-# CSS
+# CSS rules
 
 - We use PicoCSS as reset to avoid classes
+- Do not create custom classes
 
 # Images
 
@@ -19,10 +20,10 @@ globs:
 
 # PicoCSS
 
-- Use a basic reset such [PicoCSS](mdc:https:/picocss.com/docs)
-- Use [variables](mdc:https:/picocss.com/docs/css-variables) for colors, fonts, and spacing
-- Use [containers](mdc:https:/picocss.com/docs/container) and [grid](mdc:https:/picocss.com/docs/grid) for layout
-- Nice to have [light/dark](mdc:https:/picocss.com/docs/css-variables#css-variables-for-color-schemes) mode
+- Use a basic reset such 
+- Use variables for colors, fonts, and spacing
+- Use containers and grid for layout
+- Nice to have light/dark mode
 
 # Web APIs
 
@@ -35,4 +36,3 @@ globs:
 - Prefer small components
 - Name them as `src/components/{{name-or-selector}}.component.ts`
 - Only one component per file
-- Do not add features to the main `index.html` page

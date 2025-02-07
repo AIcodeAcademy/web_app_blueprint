@@ -2,12 +2,13 @@
 description: Rules for documenting the code and the project
 globs: 
 ---
-# Code
+# Code documentation
 
 - Add JSDoc comments to public or exported functions
-- Add comments to complex code that explain the why behind the code
+- Do not add comments to private or inner blocks of code
+- Except for really complex code that need a explain for the 'why'
 
-# Project
+# Project documentation
 
 - Keep an `/docs/OVERVIEW.md` file with the tech stack, folder structure, and high-level architecture diagram
 - Keep an `/docs/JOURNAL.md` file with the session chat key actions and decision
